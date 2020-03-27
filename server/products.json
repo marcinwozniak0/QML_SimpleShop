@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "name": "Chleb",
+      "price": "450",
+      "weight": "0.5"
+    },
+    {
+      "name": "Piwo",
+      "price": "350",
+      "weight": "0.5"
+    },
+    {
+      "name": "Ser",
+      "price": "300",
+      "weight": "0.5"
+    },
+    {
+      "name": "Wino",
+      "price": "700",
+      "weight": "0.7"
+    },
+    {
+      "name": "Bułka",
+      "price": "100",
+      "weight": "0.1"
+    }
+   ]
+}
