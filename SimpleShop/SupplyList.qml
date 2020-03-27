@@ -3,7 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
 
 Item {
-    MessageDialog {
+
+        MessageDialog {
         id: messageDialog
         text: "Towar dodany"
     }
@@ -22,7 +23,7 @@ Item {
                 border.width: 1
                 Text { text:  "Nazwa: " + productsList.get(index).name + '\n'
                               + "Cena: " + productsList.get(index).price + '\n'
-                              + "Waga: " +productsList.get(index).weight}
+                              + "Waga: " + productsList.get(index).weight}
                 Button{
                     x: 100
                     Text {text: "KUP"}
