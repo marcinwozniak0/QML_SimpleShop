@@ -5,5 +5,8 @@
         <file>Shop.png</file>
         <file>List.png</file>
         <file>Options.png</file>
+        <file>SupplyList.qml</file>
+        <file>Options.qml</file>
+        <file>ShoppingCard.qml</file>
     </qresource>
 </RCC>
