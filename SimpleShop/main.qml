@@ -75,4 +75,5 @@ ApplicationWindow {
     ListModel {
            id: productsList
     }
+
 }

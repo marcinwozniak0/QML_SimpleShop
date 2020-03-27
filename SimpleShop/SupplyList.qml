@@ -21,6 +21,9 @@ Item {
                 Button{
                     x: 100
                     Text {text: "KUP"}
+                    onClicked: {
+                        card.addElement(productsList.get(index).name, productsList.get(index).price);
+                    }
                 }
             }
         }
