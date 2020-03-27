@@ -7,8 +7,8 @@ products = json.load(file('products.json', 'r'))
 
 
 @app.route('/getProducts', methods = ['GET'])
-def get_colors():
-    return jsonify( {"product" : colors["products"]} )
+def get_products():
+    return jsonify( {"product" : products["products"]} )
 
 
 if __name__ == '__main__':
