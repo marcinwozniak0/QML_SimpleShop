@@ -1,7 +1,12 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
+import QtQuick.Dialogs 1.2
 
 Item {
+    MessageDialog {
+        id: messageDialog
+        text: "Towar dodany"
+    }
 
     Column{
         id: columnWithSupplies
@@ -23,6 +28,8 @@ Item {
                     Text {text: "KUP"}
                     onClicked: {
                         card.addElement(productsList.get(index).name, productsList.get(index).price);
+                        messageDialog.open()
+
                     }
                 }
             }
