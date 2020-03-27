@@ -1,23 +1,38 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls 1.4
 
 import "ShopService.js" as Service
 
-Window {
-    visible: true
+ApplicationWindow {
+    visible:true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Shop")
 
-    Button
-    {
-        text: "pobierz produkty"
-        onClicked: {
-            Service.get_products(function(response) {
-                var receivedResponse = JSON.stringify(response);
-                print(receivedResponse);
-            });
+
+    toolBar: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                iconSource: "Shop.png"
+                onClicked: menu.open()
+            }
+            ToolButton {
+                iconSource: "List.png"
+                onClicked: menu.open()
+
+            }
+            ToolButton {
+                iconSource: "Options.png"
+                onClicked: menu.open()
+            }
         }
+    }
+
+    StackView {
+        id: stack
+        anchors.fill: parent
     }
 }

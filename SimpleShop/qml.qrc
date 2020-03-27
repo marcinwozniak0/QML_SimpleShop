@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>ShopService.js</file>
+        <file>Shop.png</file>
+        <file>List.png</file>
+        <file>Options.png</file>
     </qresource>
 </RCC>
