@@ -3,11 +3,14 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 1.4
 
+import "ShopService.js" as Service
+
 ApplicationWindow {
     visible:true
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     title: qsTr("Shop")
+
 
     toolBar: ToolBar {
         RowLayout {
@@ -18,7 +21,15 @@ ApplicationWindow {
                 onClicked: {
                     stack.pop();
                     stack.push(supplyList)
-                    print(stack.depth)
+                    Service.get_products(function(response) {
+                        var responseAsString = JSON.stringify(response.products);
+                        productsList.clear();
+                        for(var i=0; i<response.products.length; i++) {
+                            productsList.append(response.products[i]);
+                        }
+                        print(response.products[0].name);
+                        print(productsList.get(0).name)
+                    });
                 }
             }
 
@@ -27,7 +38,6 @@ ApplicationWindow {
                 onClicked: {
                     stack.pop();
                     stack.push(shoppingCard);
-                    print(stack.depth)
                 }
             }
 
@@ -36,7 +46,6 @@ ApplicationWindow {
                 onClicked:{
                     stack.pop();
                     stack.push(options)
-                    print(stack.depth)
                 }
             }
         }
@@ -61,5 +70,9 @@ ApplicationWindow {
     Options{
         id: options
         visible: false
+    }
+
+    ListModel {
+           id: productsList
     }
 }
