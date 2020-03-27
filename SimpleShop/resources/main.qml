@@ -17,7 +17,7 @@ ApplicationWindow {
             anchors.fill: parent
 
             ToolButton {
-                iconSource: "List.png"
+                iconSource: "images/List.png"
                 onClicked: {
                     stack.pop();
                     stack.push(supplyList)
@@ -34,7 +34,7 @@ ApplicationWindow {
             }
 
             ToolButton {
-                iconSource: "Shop.png"
+                iconSource: "images/Shop.png"
                 onClicked: {
                     stack.pop();
                     stack.push(shoppingCard);
@@ -42,7 +42,7 @@ ApplicationWindow {
             }
 
             ToolButton {
-                iconSource: "Options.png"
+                iconSource: "images/Options.png"
                 onClicked:{
                     stack.pop();
                     stack.push(options)

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     auto shoppingCard = new ShopingCard();
     engine.rootContext()->setContextProperty("card", shoppingCard);
 
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    const QUrl url(QStringLiteral("qrc:/resources/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
