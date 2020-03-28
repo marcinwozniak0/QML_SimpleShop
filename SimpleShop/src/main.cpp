@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-//#include "ShopingCard.hpp"
+#include "ShopingCard.hpp"
 #include "ShopControler.hpp"
 
 int main(int argc, char *argv[])
@@ -14,8 +14,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     auto shopControler =  new ShopControler();
+    auto shoppingCard =  new ShopingCard();
     engine.rootContext()->setContextProperty("shopControler", shopControler);
-    QMetaObject::invokeMethod(shopControler, "changeSupplyListSize");
+    engine.rootContext()->setContextProperty("shoppingCard", shoppingCard);
     //qRegisterMetaType<QVector<Product*>>("ProductsVector");
 
     //qmlRegisterType<ShopingCard>("io.qt.examples.backend", 1, 0, "ShopingCardClass");

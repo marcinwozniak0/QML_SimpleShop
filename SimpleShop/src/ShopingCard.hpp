@@ -1,45 +1,45 @@
-//#pragma once
+#pragma once
 
-//#include <QVector>
-//#include <QDebug>
+#include <QObject>
+#include <map>
 
-//#include <memory>
-//#include <functional>
+struct ShoppingCardProduct
+{
+    ShoppingCardProduct(const QString& name, const double price)
+        : _name(name)
+        , _price(price)
+    {}
 
-//#include "Product.hpp"
+    QString _name;
+    double _price;
+};
 
-//class ShopingCard : public QObject
-//{
-//    Q_OBJECT
-////    Q_PROPERTY(QVector<Product*> productsList MEMBER _products NOTIFY productsChanged)
 
-//public:
-//    ShopingCard(QObject* parent = nullptr);
+namespace {
+struct comp
+{
+    template<typename T>
+    bool operator()(const T &lhs, const T &rhs) const
+    {
+        return true;
+    }
+};
+}
+class ShopingCard : public QObject
+{
+    Q_OBJECT
 
-//public slots:
-//    void addElement(const QString name, const int price)
-//    {
-//        auto product = new Product();
-//        product->setName(name);
-//        product->setPrice(price);
-//        _products.push_back(std::move(product));
-//        qDebug() << "Added alement";
-//        qDebug() << getListSize();
+public:
+    ShopingCard(QObject* parent = nullptr);
 
-//        emit productsChanged();
-//    }
+public slots:
+    void addElement(const QString& name, const int price);
+    int getShoppingCardSize() {return _shoppingCardList.size();}
 
-//    Product dupa()
-//    {
-//        return *_products.at(0);
-//    }
+signals:
+    void productsChanged();
 
-//    int getListSize() {return _products.size();}
-
-//signals:
-//    void productsChanged();
-
-//private:
-//    QVector<Product*> _products;
-//};
+private:
+    std::map<ShoppingCardProduct, int, comp>  _shoppingCardList;
+};
 

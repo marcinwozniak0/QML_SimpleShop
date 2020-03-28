@@ -40,6 +40,7 @@ ApplicationWindow {
                 iconSource: "images/Shop.png"
                 onClicked: {
                     onClicked
+                    shoppingCardPage. shoppingCardSize = shoppingCard.getShoppingCardSize()
                     stack.pop();
                     stack.push(shoppingCardPage);
                 }
@@ -69,7 +70,7 @@ ApplicationWindow {
     }
 
     ShoppingCard{
-        shoppingCardSize: shoppingCard.shopingCardSize
+        shoppingCardSize: shoppingCard.getShoppingCardSize()
         id: shoppingCardPage
         visible: false
     }
@@ -82,16 +83,5 @@ ApplicationWindow {
     ListModel {
            id: productsListModel
     }
-
-//    ShopingCardClass{
-//        property var shopingCardSize : getListSize()
-//        property  var dupa: dupa()
-//        //property var productsInShoppingCart : productsList
-//        id: shoppingCard
-//        onProductsChanged: {
-//            print('UPDATED');
-//            shopingCardSize = getListSize()
-//        }
-//    }
 
 }

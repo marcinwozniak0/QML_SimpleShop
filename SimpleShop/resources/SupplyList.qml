@@ -30,7 +30,7 @@ Item {
                     x: 100
                     Text {text: "KUP"}
                     onClicked: {
-                        shoppingCard.addElement(productsListModel.get(index).name, productsListModel.get(index).price);
+                        shoppingCard.addElement(shopControler.getProductName(index), shopControler.getProductPrice(index));
                         messageDialog.open()
 
                     }
