@@ -3,17 +3,16 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 1.4
 
-import "ShopService.js" as Service
-
 ApplicationWindow {
+    id: main
+    property var toolBarVisibility: false
     visible:true
     width: 800
     height: 600
     title: qsTr("Shop")
 
-
-
     toolBar: ToolBar {
+        visible: toolBarVisibility
         RowLayout {
             anchors.fill: parent
 
@@ -23,16 +22,6 @@ ApplicationWindow {
                     supplyList.supplyListSize = shopControler.getSupplyListSize()
                     stack.pop();
                     stack.push(supplyList)
-                    Service.get_products(function(response) {
-                        var responseAsString = JSON.stringify(response.products);
-                        for(var i=0; i<response.products.length; i++) {
-                            shopControler.readInputData(response.products[i].name,
-                                                        response.products[i].price,
-                                                        response.products[i].weight);
-
-                        }
-                    });
-
                 }
             }
 
@@ -40,7 +29,7 @@ ApplicationWindow {
                 iconSource: "images/Shop.png"
                 onClicked: {
                     onClicked
-                    shoppingCardPage. shoppingCardSize = shoppingCard.getShoppingCardSize()
+                    shoppingCardPage.shoppingCardSize = shoppingCard.getShoppingCardSize()
                     stack.pop();
                     stack.push(shoppingCardPage);
                 }
@@ -58,8 +47,12 @@ ApplicationWindow {
 
     StackView {
         id: stack
-        initialItem: supplyList
+        initialItem: welcomePage
         anchors.fill: parent
+    }
+
+    WelcomePage{
+        id: welcomePage
     }
 
     SupplyList{

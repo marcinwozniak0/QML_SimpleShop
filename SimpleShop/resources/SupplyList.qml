@@ -6,38 +6,44 @@ Item {
 
     property var supplyListSize: 0
 
-        MessageDialog {
+    MessageDialog {
         id: messageDialog
         text: "Towar dodany"
     }
 
-    Column{
-        id: columnWithSupplies
-        x: 100
-        y: 100
-        spacing: 5
-        Repeater{
-            model: supplyListSize
-
-            Rectangle{
-                width: 100
-                height: 60
-                border.width: 1
-                Text { text:  "Nazwa: " + shopControler.getProductName(index) + '\n'
-                              + "Cena: " + shopControler.getProductPrice(index) + '\n'
-                              + "Waga: " + shopControler.getProductWeight(index)}
-                Button{
-                    x: 100
-                    Text {text: "KUP"}
-                    onClicked: {
-                        shoppingCard.addElement(shopControler.getProductName(index), shopControler.getProductPrice(index));
-                        messageDialog.open()
-
-                    }
+    GridView {
+        id: grid
+        property int columns : 1
+        property int rows : supplyListSize
+        anchors.fill: parent
+        cellWidth: main.width/columns
+        cellHeight: main.height/rows
+        model:supplyListSize
+        delegate: Rectangle{
+            color: "green"
+            width: main.width/2
+            height: main.height/supplyListSize
+            border.width: 1
+            Text { text:  "Nazwa: " + shopControler.getProductName(index) + '\n'
+                          + "Cena: " + shopControler.getProductPrice(index) + '\n'
+                          + "Waga: " + shopControler.getProductWeight(index);
+                anchors.centerIn: parent}
+            Button{
+                x: main.width/2
+                width: main.width/2
+                height:main.height/supplyListSize
+                text: qsTr("Kliknij aby dodac do koszyka")
+                onClicked: {
+                    shoppingCard.addElement(shopControler.getProductName(index), shopControler.getProductPrice(index));
+                    messageDialog.open()
+                }
+                background: Rectangle {
+                    border.color: "black"
+                    color: "#948989"
+                    border.width: 2
                 }
             }
         }
     }
 }
-
 

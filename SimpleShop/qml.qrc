@@ -8,5 +8,6 @@
         <file>resources/images/Shop.png</file>
         <file>resources/images/Options.png</file>
         <file>resources/images/List.png</file>
+        <file>resources/WelcomePage.qml</file>
     </qresource>
 </RCC>
