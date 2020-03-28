@@ -2,8 +2,13 @@ import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 
+import "ShopService.js" as Service
+
 Item {
     property var shoppingCardSize : 0
+
+
+
 
     GridLayout {
         id: grid
@@ -12,6 +17,7 @@ Item {
         rowSpacing: 5
         columnSpacing: 5
         anchors.margins: 5
+
         property var titles: [ "Twar", "Ilosc", "Cena index", "Cena ALL", "Kliknij aby usunac" ]
 
         Repeater {
@@ -87,6 +93,21 @@ Item {
                 }
             }
         }
+
+        Button{
+        Layout.columnSpan: 2
+        text: qsTr("KUP")
+        onClicked:
+        {
+            var rquest = {
+                price: shoppingCard.getTotalPrice().toString()
+            }
+            Service.send_total_price(rquest, function(resp){
+            print('handle resp: ' + JSON.stringify(resp))});
+
+            shoppingCard.clearShoppingCard();
+            shoppingCardSize = shoppingCard.getShoppingCardSize();
+        }
+        }
     }
 }
-

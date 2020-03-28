@@ -63,6 +63,22 @@ public slots:
         return iterator->second;
     }
 
+    int getTotalPrice() const
+    {
+        auto totalPrize = 0u;
+        for (const auto& [product, amount] : _shoppingCardList)
+        {
+            totalPrize += product._price * amount;
+        }
+
+        return totalPrize;
+    }
+
+    int clearShoppingCard()
+    {
+        _shoppingCardList.clear();
+    }
+
     void removeProduct(const int index)
     {
         auto iterator = _shoppingCardList.begin();
