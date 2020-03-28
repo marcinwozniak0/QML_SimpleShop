@@ -23,14 +23,18 @@ ApplicationWindow {
                     stack.pop();
                     stack.push(supplyList)
                 }
+                Text {
+                                    text: parent.text
+                                    anchors.bottom: parent.bottom
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
             }
 
             ToolButton {
                 iconSource: "images/Shop.png"
                 onClicked: {
-                    onClicked
-                    shoppingCardPage.shoppingCardSize = shoppingCard.getShoppingCardSize()
                     stack.pop();
+                    shoppingCardPage.shoppingCardSize = shoppingCard.getShoppingCardSize()
                     stack.push(shoppingCardPage);
                 }
             }
