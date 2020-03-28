@@ -23,12 +23,14 @@ ApplicationWindow {
                     stack.push(supplyList)
                     Service.get_products(function(response) {
                         var responseAsString = JSON.stringify(response.products);
-                        productsList.clear();
+                        productsListModel.clear();
                         for(var i=0; i<response.products.length; i++) {
-                            productsList.append(response.products[i]);
+                            productsListModel.append(response.products[i]);
+                            shopControler.readInputData(response.products[i].name,
+                                                        response.products[i].price,
+                                                        response.products[i].weight);
+
                         }
-                        print(response.products[0].name);
-                        print(productsList.get(0).name)
                     });
                 }
             }
@@ -37,7 +39,7 @@ ApplicationWindow {
                 iconSource: "images/Shop.png"
                 onClicked: {
                     stack.pop();
-                    stack.push(shoppingCard);
+                    stack.push(shoppingCardPage);
                 }
             }
 
@@ -63,7 +65,8 @@ ApplicationWindow {
     }
 
     ShoppingCard{
-        id: shoppingCard
+        shoppingCardSize: shoppingCard.shopingCardSize
+        id: shoppingCardPage
         visible: false
     }
 
@@ -73,7 +76,18 @@ ApplicationWindow {
     }
 
     ListModel {
-           id: productsList
+           id: productsListModel
     }
+
+//    ShopingCardClass{
+//        property var shopingCardSize : getListSize()
+//        property  var dupa: dupa()
+//        //property var productsInShoppingCart : productsList
+//        id: shoppingCard
+//        onProductsChanged: {
+//            print('UPDATED');
+//            shopingCardSize = getListSize()
+//        }
+//    }
 
 }

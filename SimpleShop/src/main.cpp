@@ -2,7 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "ShopingCard.hpp"
+//#include "ShopingCard.hpp"
+#include "ShopControler.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -12,8 +13,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    auto shoppingCard = new ShopingCard();
-    engine.rootContext()->setContextProperty("card", shoppingCard);
+    auto shopControler =  new ShopControler();
+    engine.rootContext()->setContextProperty("shopControler", shopControler);
+
+    //qRegisterMetaType<QVector<Product*>>("ProductsVector");
+
+    //qmlRegisterType<ShopingCard>("io.qt.examples.backend", 1, 0, "ShopingCardClass");
+    // qmlRegisterType<Product>("io.qt.examples.backend", 1, 0, "Product");
+    //qmlRegisterType<QVector<Product*>>("io.qt.examples.backend", 1, 0, "ProductsVector");
 
     const QUrl url(QStringLiteral("qrc:/resources/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
