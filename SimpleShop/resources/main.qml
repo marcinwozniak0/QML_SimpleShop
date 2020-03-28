@@ -12,6 +12,7 @@ ApplicationWindow {
     title: qsTr("Shop")
 
 
+
     toolBar: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -19,25 +20,26 @@ ApplicationWindow {
             ToolButton {
                 iconSource: "images/List.png"
                 onClicked: {
+                    supplyList.supplyListSize = shopControler.getSupplyListSize()
                     stack.pop();
                     stack.push(supplyList)
                     Service.get_products(function(response) {
                         var responseAsString = JSON.stringify(response.products);
-                        productsListModel.clear();
                         for(var i=0; i<response.products.length; i++) {
-                            productsListModel.append(response.products[i]);
                             shopControler.readInputData(response.products[i].name,
                                                         response.products[i].price,
                                                         response.products[i].weight);
 
                         }
                     });
+
                 }
             }
 
             ToolButton {
                 iconSource: "images/Shop.png"
                 onClicked: {
+                    onClicked
                     stack.pop();
                     stack.push(shoppingCardPage);
                 }
@@ -60,6 +62,8 @@ ApplicationWindow {
     }
 
     SupplyList{
+
+        supplyListSize: shopControler.getSupplyListSize()
         id: supplyList
         visible: false
     }

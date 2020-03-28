@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     auto shopControler =  new ShopControler();
     engine.rootContext()->setContextProperty("shopControler", shopControler);
-
+    QMetaObject::invokeMethod(shopControler, "changeSupplyListSize");
     //qRegisterMetaType<QVector<Product*>>("ProductsVector");
 
     //qmlRegisterType<ShopingCard>("io.qt.examples.backend", 1, 0, "ShopingCardClass");

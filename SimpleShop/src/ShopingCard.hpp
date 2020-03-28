@@ -1,38 +1,45 @@
-#pragma once
+//#pragma once
 
-#include <QList>
-#include <QPair>
-#include <QDebug>
+//#include <QVector>
+//#include <QDebug>
 
-class ShopingCard : public QObject
-{
-    Q_OBJECT
-    Q_PROPERTY(QList<Product> _productsList READ getProductList WRITE setProductList NOTIFY newElementAded)
+//#include <memory>
+//#include <functional>
 
-    using Product = QPair<QString, int>;
+//#include "Product.hpp"
 
-public:
-    ShopingCard(QObject *parent = nullptr);
+//class ShopingCard : public QObject
+//{
+//    Q_OBJECT
+////    Q_PROPERTY(QVector<Product*> productsList MEMBER _products NOTIFY productsChanged)
 
-    void setProductList(QList<Product>& productList) {_productsList = productList;}
-    QList<Product> getProductList() {return _productsList;}
+//public:
+//    ShopingCard(QObject* parent = nullptr);
 
-public slots:
-    void addElement(const QString name, const int price)
-    {
-        _productsList.append(qMakePair(name, price));
-        qDebug() << "Added alement";
-        qDebug() << getListSize();
+//public slots:
+//    void addElement(const QString name, const int price)
+//    {
+//        auto product = new Product();
+//        product->setName(name);
+//        product->setPrice(price);
+//        _products.push_back(std::move(product));
+//        qDebug() << "Added alement";
+//        qDebug() << getListSize();
 
-        emit newElementAded();
-    }
+//        emit productsChanged();
+//    }
 
-    int getListSize() {return _productsList.size();}
+//    Product dupa()
+//    {
+//        return *_products.at(0);
+//    }
 
-signals:
-    void newElementAded();
+//    int getListSize() {return _products.size();}
 
-private:
-    QList<QPair<QString, int>> _productsList;
-};
+//signals:
+//    void productsChanged();
+
+//private:
+//    QVector<Product*> _products;
+//};
 

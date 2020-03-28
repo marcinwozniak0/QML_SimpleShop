@@ -4,6 +4,8 @@ import QtQuick.Dialogs 1.2
 
 Item {
 
+    property var supplyListSize: 0
+
         MessageDialog {
         id: messageDialog
         text: "Towar dodany"
@@ -15,20 +17,20 @@ Item {
         y: 100
         spacing: 5
         Repeater{
-            model: productsList
+            model: supplyListSize
 
             Rectangle{
                 width: 100
                 height: 60
                 border.width: 1
-                Text { text:  "Nazwa: " + productsList.get(index).name + '\n'
-                              + "Cena: " + productsList.get(index).price + '\n'
-                              + "Waga: " + productsList.get(index).weight}
+                Text { text:  "Nazwa: " + shopControler.getProductName(index) + '\n'
+                              + "Cena: " + shopControler.getProductPrice(index) + '\n'
+                              + "Waga: " + shopControler.getProductWeight(index)}
                 Button{
                     x: 100
                     Text {text: "KUP"}
                     onClicked: {
-                        card.addElement(productsList.get(index).name, productsList.get(index).price);
+                        shoppingCard.addElement(productsListModel.get(index).name, productsListModel.get(index).price);
                         messageDialog.open()
 
                     }

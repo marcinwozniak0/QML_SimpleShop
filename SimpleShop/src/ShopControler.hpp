@@ -30,6 +30,13 @@ public:
     {}
 
     Q_INVOKABLE void readInputData(const QString&, const double, const double);
+    Q_INVOKABLE QString getProductName(const int index) const;
+    Q_INVOKABLE double getProductPrice(const int index) const;
+    Q_INVOKABLE double getProductWeight(const int index) const;
+    Q_INVOKABLE int getSupplyListSize() const;
+
+signals:
+    void changeSupplyListSize();
 
 private:
    std::vector<Product> _shopSupplyList;
