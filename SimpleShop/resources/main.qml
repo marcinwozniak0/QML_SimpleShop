@@ -19,7 +19,7 @@ ApplicationWindow {
             ToolButton {
                 iconSource: "images/List.png"
                 onClicked: {
-                    supplyList.supplyListSize = shopControler.getSupplyListSize()
+                    supplyList.supplyListSize = shopSupplies.getSupplyListSize()
                     stack.pop();
                     stack.push(supplyList)
                 }
@@ -61,7 +61,7 @@ ApplicationWindow {
 
     SupplyList{
 
-        supplyListSize: shopControler.getSupplyListSize()
+        supplyListSize: shopSupplies.getSupplyListSize()
         id: supplyList
         visible: false
     }

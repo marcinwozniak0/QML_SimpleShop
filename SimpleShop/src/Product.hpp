@@ -1,19 +1,21 @@
 #pragma once
 
-#include <QList>
-#include <QPair>
-#include <QDebug>
-
-struct Product
+class Product
 {
-    Product(const QString& name, const int price, const double weight)
+public:
+    Product(const QString& name, const int price, const double weight = 0)
         : _name(name)
         , _price(price)
         , _weight(weight)
     {}
 
-    QString _name;
-    int _price;
-    double _weight;
+    QString getProductName() const {return _name;}
+    int getProductPrice() const {return _price;}
+    double getProductWeight() const {return _weight;}
+
+private:
+    const QString _name;
+    const int _price;
+    const double _weight;
 };
 

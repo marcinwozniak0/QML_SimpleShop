@@ -14,7 +14,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/ShopControler.cpp \
+    src/ShopSupplies.cpp \
     src/ShoppingCard.cpp \
         src/main.cpp \
 
@@ -33,5 +33,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     src/Product.hpp \
-    src/ShopControler.hpp \
-    src/ShoppingCard.hpp
+    src/ShopSupplies.hpp \
+    src/ShoppingCard.hpp \
+    src/ShoppingCardProduct.hpp

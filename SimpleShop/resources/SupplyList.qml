@@ -24,9 +24,9 @@ Item {
             width: main.width/2
             height: main.height/supplyListSize
             border.width: 1
-            Text { text:  "Nazwa: " + shopControler.getProductName(index) + '\n'
-                          + "Cena: " + shopControler.getProductPrice(index) + '\n'
-                          + "Waga: " + shopControler.getProductWeight(index);
+            Text { text:  "Nazwa: " + shopSupplies.getProductName(index) + '\n'
+                          + "Cena: " + shopSupplies.getProductPrice(index) + '\n'
+                          + "Waga: " + shopSupplies.getProductWeight(index);
                 anchors.centerIn: parent}
             Button{
                 x: main.width/2
@@ -34,7 +34,7 @@ Item {
                 height:main.height/supplyListSize
                 text: qsTr("Kliknij aby dodac do koszyka")
                 onClicked: {
-                    shoppingCard.addProduct(shopControler.getProductName(index), shopControler.getProductPrice(index));
+                    shoppingCard.addProduct(shopSupplies.getProductName(index), shopSupplies.getProductPrice(index));
                     messageDialog.open()
                 }
                 background: Rectangle {

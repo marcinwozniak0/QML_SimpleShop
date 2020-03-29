@@ -3,28 +3,9 @@
 #include <QObject>
 #include <map>
 
-struct ShoppingCardProduct
-{
-    ShoppingCardProduct(const QString& name, const double price)
-        : _name(name)
-        , _price(price)
-    {}
+#include "ShoppingCardProduct.hpp"
 
-    QString _name;
-    int _price;
-};
-
-
-namespace {
-struct comp
-{
-    template<typename ShoppingCardProduct>
-    bool operator()(const ShoppingCardProduct &lhs, const ShoppingCardProduct &rhs) const
-    {
-        return lhs._name > rhs._name;
-    }
-};
-}
+using ProductAmount = int;
 
 class ShopingCard : public QObject
 {
@@ -35,7 +16,7 @@ public:
 
 public slots:
     void addProduct(const QString& name, const int price);
-    int clearShoppingCard();
+    void clearShoppingCard();
     void removeProduct(const int index);
 
     int getShoppingCardSize() const;
@@ -46,6 +27,6 @@ public slots:
 
 
 private:
-    std::map<ShoppingCardProduct, int, comp>  _shoppingCardList;
+    std::map<ShoppingCardProduct, ProductAmount, ShoppingCardProductComparator>  _shoppingCardList;
 };
 

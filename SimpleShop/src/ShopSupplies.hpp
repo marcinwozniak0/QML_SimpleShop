@@ -5,11 +5,11 @@
 
 #include "Product.hpp"
 
-class ShopControler : public QObject
+class ShopSupplies : public QObject
 {
     Q_OBJECT
 public:
-    explicit ShopControler(QObject* parent = nullptr)
+    explicit ShopSupplies(QObject* parent = nullptr)
         : QObject(parent)
     {}
 

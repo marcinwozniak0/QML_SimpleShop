@@ -3,7 +3,7 @@
 #include <QQmlContext>
 
 #include "ShoppingCard.hpp"
-#include "ShopControler.hpp"
+#include "ShopSupplies.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -13,22 +13,17 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    auto shopControler =  new ShopControler();
-    auto shoppingCard =  new ShopingCard();
-    engine.rootContext()->setContextProperty("shopControler", shopControler);
-    engine.rootContext()->setContextProperty("shoppingCard", shoppingCard);
-    //qRegisterMetaType<QVector<Product*>>("ProductsVector");
-
-    //qmlRegisterType<ShopingCard>("io.qt.examples.backend", 1, 0, "ShopingCardClass");
-    // qmlRegisterType<Product>("io.qt.examples.backend", 1, 0, "Product");
-    //qmlRegisterType<QVector<Product*>>("io.qt.examples.backend", 1, 0, "ProductsVector");
+    engine.rootContext()->setContextProperty("shopSupplies", new ShopSupplies());
+    engine.rootContext()->setContextProperty("shoppingCard",  new ShopingCard());
 
     const QUrl url(QStringLiteral("qrc:/resources/main.qml"));
+
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
     engine.load(url);
 
     return app.exec();
