@@ -20,9 +20,9 @@ ApplicationWindow {
                 icon.source: "images/List.png"
                 icon.name: "dasdasds"
                 onClicked: {
-                    supplyList.numberOfRows = shopSupplies.getSupplyListSize()
+                    supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
                     stack.pop();
-                    stack.push(supplyList)
+                    stack.push(supplyListPage)
                 }
                 Text {
                                     text: parent.text
@@ -46,10 +46,10 @@ ApplicationWindow {
                             }
                         });
                        // toolBarVisibility = true
-                        supplyList.numberOfRows = shopSupplies.getSupplyListSize()
-                     //   stack.push(supplyList)
+                        supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
+                     //   stack.push(supplyListPage)
 
-                    shoppingCardPage.shoppingCardSize = shoppingCard.getShoppingCardSize()
+                    shoppingCardPage.numberOfRows = shoppingCard.getShoppingCardSize()
                     stack.push(shoppingCardPage);
                 }
             }
@@ -75,14 +75,13 @@ ApplicationWindow {
 //    }
 
     SupplyList{
-
+        id: supplyListPage
         numberOfRows: shopSupplies.getSupplyListSize()
-        id: supplyList
         visible: false
     }
 
     ShoppingCard{
-        shoppingCardSize: shoppingCard.getShoppingCardSize()
+        numberOfRows: shoppingCard.getShoppingCardSize()
         id: shoppingCardPage
         visible: false
     }

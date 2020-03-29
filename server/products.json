@@ -24,6 +24,46 @@
       "name": "Bułka",
       "price": "100",
       "weight": "0.1"
+    },
+    {
+      "name": "jogurt",
+      "price": "350",
+      "weight": "0.5"
+    },
+    {
+      "name": "pomidor",
+      "price": "300",
+      "weight": "0.5"
+    },
+    {
+      "name": "ziemniak",
+      "price": "700",
+      "weight": "0.7"
+    },
+    {
+      "name": "marchewka",
+      "price": "100",
+      "weight": "0.1"
+    },
+    {
+      "name": "szynka",
+      "price": "350",
+      "weight": "0.5"
+    },
+    {
+      "name": "kalfior",
+      "price": "300",
+      "weight": "0.5"
+    },
+    {
+      "name": "mandarynki",
+      "price": "700",
+      "weight": "0.7"
+    },
+    {
+      "name": "rogal",
+      "price": "100",
+      "weight": "0.1"
     }
    ]
 }

@@ -19,8 +19,8 @@ Item {
                 }
             });
             toolBarVisibility = true
-            supplyList.supplyListSize = shopSupplies.getSupplyListSize()
-            stack.push(supplyList)
+            supplyListPage.supplyListSize = shopSupplies.getSupplyListSize()
+            stack.push(supplyListPage)
         }
 
         background: Rectangle {

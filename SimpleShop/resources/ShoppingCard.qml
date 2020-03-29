@@ -6,97 +6,128 @@ import QtQuick.Dialogs 1.2
 import "ShopService.js" as Service
 
 Item {
-    property var shoppingCardSize : 0
+    property var numberOfRows: 0
+    property var numberOfColumns: 5
 
 
 
+    ScrollView{
+        width: main.width
+        height: main.height
+        clip: true
 
     GridLayout {
         id: grid
         anchors.fill: parent
-        columns: titles.length
+        columns: numberOfColumns
+        rows: numberOfRows + 1
         rowSpacing: 5
         columnSpacing: 5
         anchors.margins: 5
 
-        property var titles: [ "Twar", "Ilosc", "Cena index", "Cena ALL", "Kliknij aby usunac" ]
-
         Repeater {
-            model: grid.titles
-            Label {
+            property var shoppingCardBookmark: [ "Towar", "Ilość", "Cena za sztukę", "Cena za wszystkie\nprodukty", "Usuń produkt" ]
+            model: shoppingCardBookmark
+            Rectangle {
+                color: "aquamarine"
                 Layout.row: 0
                 Layout.column: index
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: modelData
-            }
-        }
-
-        Repeater {
-            model: shoppingCardSize
-            Label {
-                Layout.row: index + 1
-                Layout.column: 0
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: shoppingCard.getProductName(index)
-            }
-        }
-
-        Repeater {
-            id: ilosc
-
-            model: shoppingCardSize
-            TextArea {
-                Layout.row: index + 1
-                Layout.column: 1
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: shoppingCard.getProductAmount(index) + (shoppingCardSize - shoppingCardSize)
-            }
-        }
-
-        Repeater {
-            model: shoppingCardSize
-            TextArea {
-                Layout.row: index + 1
-                Layout.column: 2
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: shoppingCard.getProductPrice(index)
-            }
-        }
-
-        Repeater {
-            model: shoppingCardSize
-            TextArea {
-                Layout.row: index + 1
-                Layout.column: 3
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: shoppingCard.getProductAmount(index) * shoppingCard.getProductPrice(index)
-            }
-        }
-
-        Repeater {
-            model: shoppingCardSize
-            Button {
-                Layout.row: index + 1
-                Layout.column: 4
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                text: qsTr("Usun jeden element")
-                onClicked: {
-                    shoppingCard.removeProduct(index)
-                    stack.pop();
-                    stack.push(shoppingCardPage);
-                    shoppingCardSize = shoppingCard.getShoppingCardSize();
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: modelData;
+                    anchors.centerIn: parent
+                    font.bold: true
                 }
             }
         }
 
-        Button{
-            Layout.columnSpan: 2
+        Repeater {
+            model: numberOfRows
+            Rectangle{
+                color: "cadetblue"
+                Layout.row: index + 1
+                Layout.column: 0
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: qsTr(shoppingCard.getProductName(index));
+                    anchors.centerIn: parent
+                }}
+        }
+
+        Repeater {
+            model: numberOfRows
+            Rectangle{
+                color: "cadetblue"
+                Layout.row: index + 1
+                Layout.column: 1
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: shoppingCard.getProductAmount(index) + (numberOfRows - numberOfRows);
+                    anchors.centerIn: parent
+                }}
+        }
+
+        Repeater {
+            model: numberOfRows
+            Rectangle{
+                color: "cadetblue"
+                Layout.row: index + 1
+                Layout.column: 2
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: shoppingCard.getProductPrice(index);
+                    anchors.centerIn: parent
+                }}
+        }
+
+        Repeater {
+            model: numberOfRows
+            Rectangle{
+                color: "cadetblue"
+                Layout.row: index + 1
+                Layout.column: 3
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: shoppingCard.getProductAmount(index) * shoppingCard.getProductPrice(index)
+                    anchors.centerIn: parent
+                }}
+        }
+
+        Repeater {
+            model: numberOfRows
+            RoundButton{
+                Layout.row: index + 1
+                Layout.column: 4
+                Layout.preferredWidth: main.width / numberOfColumns
+                Layout.preferredHeight: 70
+                radius: 10
+                Text {
+                    text: qsTr("Usuń")
+                    anchors.centerIn: parent
+                }
+                onClicked: {
+                    shoppingCard.removeProduct(index)
+                    numberOfRows = shoppingCard.getShoppingCardSize();
+                }}
+        }
+
+        RoundButton{
+
+            Layout.preferredWidth: main.width
+            Layout.row: grid.rows
+            Layout.column: 0
+            Layout.columnSpan: 5
+            Layout.preferredHeight: 100
             text: qsTr("KUP")
             onClicked:
             {
@@ -109,17 +140,28 @@ Item {
                         finishedOrded.finalPrice = JSON.stringify(resp)})
 
                     shoppingCard.clearShoppingCard();
-                    shoppingCardSize = shoppingCard.getShoppingCardSize();
+                    numberOfRows = shoppingCard.getShoppingCardSize();
 
                     finishedOrded.open()
                 }
+                else{
+                    emptyShoppingCard.open();
+                }
             }
         }
+
         MessageDialog {
             property var finalPrice : 0
             id: finishedOrded
-            text: 'Gratulacje, zakupiles towar. Finalna kwota to '  + finalPrice
+            text: 'Gratulacje, zakupiłeś towar. Finalna kwota to '  + finalPrice
+        }
+
+        MessageDialog {
+            property var finalPrice : 0
+            id: emptyShoppingCard
+            text: qsTr('Kosz jest pusty, nie możesz dokonać zakupu')
         }
     }
 
+}
 }

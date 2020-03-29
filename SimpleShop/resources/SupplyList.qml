@@ -8,11 +8,6 @@ Item {
     property var numberOfRows: 0
     property var numberOfColumns: 3
 
-    MessageDialog {
-        id: messageDialog
-        text: "Towar dodany"
-    }
-
     ScrollView{
         width: main.width
         height: main.height
@@ -74,6 +69,12 @@ Item {
                     }
                 }
             }
+
+            MessageDialog {
+                id: messageDialog
+                text: qsTr('Towar pomyślnie dodano do koszyka');
+            }
+
         }
     }
 }
