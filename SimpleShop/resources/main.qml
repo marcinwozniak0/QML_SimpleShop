@@ -1,25 +1,26 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Controls 1.4
-
+ import QtQuick.Controls 2.12
+import "ShopService.js" as Service
 ApplicationWindow {
     id: main
-    property var toolBarVisibility: false
+   // property var toolBarVisibility: false
     visible:true
     width: 800
     height: 600
     title: qsTr("Shop")
 
-    toolBar: ToolBar {
-        visible: toolBarVisibility
+
+      header: ToolBar {
         RowLayout {
             anchors.fill: parent
 
             ToolButton {
-                iconSource: "images/List.png"
+                icon.source: "images/List.png"
+                icon.name: "dasdasds"
                 onClicked: {
-                    supplyList.supplyListSize = shopSupplies.getSupplyListSize()
+                    supplyList.numberOfRows = shopSupplies.getSupplyListSize()
                     stack.pop();
                     stack.push(supplyList)
                 }
@@ -31,16 +32,30 @@ ApplicationWindow {
             }
 
             ToolButton {
-                iconSource: "images/Shop.png"
+                icon.source: "images/Shop.png"
                 onClicked: {
                     stack.pop();
+
+                        Service.get_products(function(response) {
+                            var responseAsString = JSON.stringify(response.products);
+                            for(var i=0; i<response.products.length; i++) {
+                                shopSupplies.addProduct(response.products[i].name,
+                                                            response.products[i].price,
+                                                            response.products[i].weight);
+
+                            }
+                        });
+                       // toolBarVisibility = true
+                        supplyList.numberOfRows = shopSupplies.getSupplyListSize()
+                     //   stack.push(supplyList)
+
                     shoppingCardPage.shoppingCardSize = shoppingCard.getShoppingCardSize()
                     stack.push(shoppingCardPage);
                 }
             }
 
             ToolButton {
-                iconSource: "images/Options.png"
+                icon.source: "images/Options.png"
                 onClicked:{
                     stack.pop();
                     stack.push(options)
@@ -51,17 +66,17 @@ ApplicationWindow {
 
     StackView {
         id: stack
-        initialItem: welcomePage
+        initialItem: options
         anchors.fill: parent
     }
 
-    WelcomePage{
-        id: welcomePage
-    }
+//    WelcomePage{
+//        id: welcomePage
+//    }
 
     SupplyList{
 
-        supplyListSize: shopSupplies.getSupplyListSize()
+        numberOfRows: shopSupplies.getSupplyListSize()
         id: supplyList
         visible: false
     }
