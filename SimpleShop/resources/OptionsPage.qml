@@ -1,12 +1,27 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 
+import "ShopService.js" as Service
+
 Item {
-    property var httpEndpointAddress : '127.0.0.1'
+    property var httpEndpointAddress : ''
 
     TextField {
-        placeholderText: qsTr('127.0.0.1')
+        placeholderText: qsTr('Podaj adress IP')
         onTextChanged: {
+            Service.get_products(function(response) {
+                var responseAsString = JSON.stringify(response.products);
+                for(var i=0; i<response.products.length; i++) {
+                    shopSupplies.addProduct(response.products[i].name,
+                                            response.products[i].price,
+                                            response.products[i].weight);
+
+                }
+            });
+
+            supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
+            shoppingCardPage.numberOfRows = shoppingCard.getShoppingCardSize()
+
             httpEndpointAddress = this.text
         }
 

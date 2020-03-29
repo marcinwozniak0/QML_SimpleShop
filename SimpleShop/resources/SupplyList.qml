@@ -74,7 +74,6 @@ Item {
                 id: messageDialog
                 text: qsTr('Towar pomyślnie dodano do koszyka');
             }
-
         }
     }
 }

@@ -7,7 +7,7 @@ products = json.load(file('products.json', 'r'))
 
 @app.route('/getProducts', methods = ['GET'])
 def get_products():
-    return jsonify( products)
+    return jsonify( products), 201
 
 @app.route('/orders', methods= ['POST'])
 def acceptr_order():

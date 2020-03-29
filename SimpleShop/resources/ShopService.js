@@ -1,26 +1,25 @@
 var PORT = ':5000'
 var HTTP = 'http://'
 
-function request(verb, endpoint, obj, response) {
+function get_products(response) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
         print('httpRequest: on ready state change: ' + httpRequest.readyState)
         if(httpRequest.readyState === XMLHttpRequest.DONE) {
             if(response) {
-                var res = JSON.parse(httpRequest.responseText.toString())
-                response(res);
+                if(201 ===  httpRequest.status){
+                    var res = JSON.parse(httpRequest.responseText.toString())
+                    response(res);
+                }
+                currentHttpStatus =  httpRequest.status
             }
+            currentHttpStatus =  httpRequest.status;
         }
     }
-    httpRequest.open(verb,  HTTP + options.httpEndpointAddress + PORT + (endpoint?'/' + endpoint:''));
+    httpRequest.open('GET',  HTTP + options.httpEndpointAddress + PORT + '/getProducts');
     httpRequest.setRequestHeader('Content-Type', 'application/json');
     httpRequest.setRequestHeader('Accept', 'application/json');
-    var data = obj?JSON.stringify(obj):''
-    httpRequest.send(data)
-}
-
-function get_products(response) {
-    request('GET', 'getProducts', null, response)
+    httpRequest.send()
 }
 
 function send_total_price(request, response) {
@@ -29,8 +28,12 @@ function send_total_price(request, response) {
         print('httpRequest: on ready state change: ' + httpRequest.readyState)
         if(httpRequest.readyState === XMLHttpRequest.DONE) {
             if(response) {
-                var res = JSON.parse(httpRequest.responseText.toString())
-                response(res);
+                if(201 ===  httpRequest.status)
+                {
+                    var res = JSON.parse(httpRequest.responseText.toString())
+                    response(res);
+                }
+                currentHttpStatus =  httpRequest.status
             }
         }
     }

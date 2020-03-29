@@ -1,8 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-
-import "ShopService.js" as Service
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: main
@@ -10,23 +9,13 @@ ApplicationWindow {
     width: 800
     height: 600
     title: qsTr("Sklep :) ")
+    property var currentHttpStatus: 0
 
-    Component.onCompleted:
-    {
-        Service.get_products(function(response) {
-            var responseAsString = JSON.stringify(response.products);
-            for(var i=0; i<response.products.length; i++) {
-                shopSupplies.addProduct(response.products[i].name,
-                                        response.products[i].price,
-                                        response.products[i].weight);
-
-            }
-        });
-
-        supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
-        shoppingCardPage.numberOfRows = shoppingCard.getShoppingCardSize()
+    MessageDialog {
+        id: serverNotConnected
+        text: qsTr('Nie udało się pobrać produktów z sewera. Podaj poprawny adres w zakładce OPCJE');
+        visible: false
     }
-
 
     header: ToolBar {
         ToolButton {
@@ -34,6 +23,9 @@ ApplicationWindow {
             width: main.width / 3
             anchors.left: parent.left
             onClicked: {
+                if (0 === shopSupplies.getSupplyListSize()){
+                    serverNotConnected.open()
+                }
                 supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
                 stack.pop();
                 stack.push(supplyListPage)
