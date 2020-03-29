@@ -3,7 +3,7 @@
         <file>resources/main.qml</file>
         <file>resources/ShoppingCard.qml</file>
         <file>resources/SupplyList.qml</file>
-        <file>resources/Options.qml</file>
+        <file>resources/OptionsPage.qml</file>
         <file>resources/ShopService.js</file>
         <file>resources/images/Shop.png</file>
         <file>resources/images/Options.png</file>

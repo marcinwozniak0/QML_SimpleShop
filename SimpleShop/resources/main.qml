@@ -72,7 +72,7 @@ ApplicationWindow {
         visible: false
     }
 
-    Options{
+    OptionsPage{
         id: options
         visible: false
     }
