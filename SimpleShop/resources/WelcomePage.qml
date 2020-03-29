@@ -12,7 +12,7 @@ Item {
             Service.get_products(function(response) {
                 var responseAsString = JSON.stringify(response.products);
                 for(var i=0; i<response.products.length; i++) {
-                    shopControler.readInputData(response.products[i].name,
+                    shopControler.addProduct(response.products[i].name,
                                                 response.products[i].price,
                                                 response.products[i].weight);
 

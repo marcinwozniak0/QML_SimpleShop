@@ -4,21 +4,16 @@
 #include <QPair>
 #include <QDebug>
 
-//class Product// : public QObject
-//{
-//    //Q_OBJECT
-//   // Q_PROPERTY(QString name MEMBER _name)
-//  //  Q_PROPERTY(int price MEMBER _price)
+struct Product
+{
+    Product(const QString& name, const int price, const double weight)
+        : _name(name)
+        , _price(price)
+        , _weight(weight)
+    {}
 
-//public:
-//  //  Product(QObject* parent = nullptr) :
-//   //     QObject(parent) {}
-
-//    void setName(const QString& name) {_name = name;}
-//    void setPrice(const int price) {_price = price;}
-
-//private:
-//    QString _name;
-//    int _price;
-//};
+    QString _name;
+    int _price;
+    double _weight;
+};
 

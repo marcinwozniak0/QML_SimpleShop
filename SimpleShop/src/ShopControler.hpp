@@ -1,25 +1,9 @@
 #pragma once
 
 #include <QObject>
-#include <QString>
-#include <QDebug>
-
 #include <vector>
-#include <string>
 
-
-struct Product
-{
-    Product(const QString& name, const double price, const double weight)
-        : _name(name)
-        , _price(price)
-        , _weight(weight)
-    {}
-
-    QString _name;
-    double _price;
-    double _weight;
-};
+#include "Product.hpp"
 
 class ShopControler : public QObject
 {
@@ -29,16 +13,13 @@ public:
         : QObject(parent)
     {}
 
-    Q_INVOKABLE void readInputData(const QString&, const double, const double);
-    Q_INVOKABLE QString getProductName(const int index) const;
-    Q_INVOKABLE double getProductPrice(const int index) const;
-    Q_INVOKABLE double getProductWeight(const int index) const;
-    Q_INVOKABLE int getSupplyListSize() const;
-
-signals:
-    void changeSupplyListSize();
+public slots:
+     void addProduct(const QString&, const int, const double);
+     int getProductPrice(const int index) const;
+     int getSupplyListSize() const;
+     double getProductWeight(const int index) const;
+     QString getProductName(const int index) const;
 
 private:
    std::vector<Product> _shopSupplyList;
 };
-

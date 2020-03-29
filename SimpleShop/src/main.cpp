@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "ShopingCard.hpp"
+#include "ShoppingCard.hpp"
 #include "ShopControler.hpp"
 
 int main(int argc, char *argv[])

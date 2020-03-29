@@ -23,8 +23,6 @@ function get_products(response) {
     request('GET', 'getProducts', null, response)
 }
 
-
-
 function send_total_price(request, response) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {

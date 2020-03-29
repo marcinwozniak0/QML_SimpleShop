@@ -81,4 +81,5 @@ ApplicationWindow {
            id: productsListModel
     }
 
+
 }

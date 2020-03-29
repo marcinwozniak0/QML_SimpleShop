@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2
 
 import "ShopService.js" as Service
 
@@ -95,19 +96,30 @@ Item {
         }
 
         Button{
-        Layout.columnSpan: 2
-        text: qsTr("KUP")
-        onClicked:
-        {
-            var rquest = {
-                price: shoppingCard.getTotalPrice().toString()
-            }
-            Service.send_total_price(rquest, function(resp){
-            print('handle resp: ' + JSON.stringify(resp))});
+            Layout.columnSpan: 2
+            text: qsTr("KUP")
+            onClicked:
+            {
+                if (0 !== shoppingCard.getShoppingCardSize()){
+                    var rquest = {
+                        price: shoppingCard.getTotalPrice().toString()
+                    }
 
-            shoppingCard.clearShoppingCard();
-            shoppingCardSize = shoppingCard.getShoppingCardSize();
+                    Service.send_total_price(rquest, function(resp){
+                        finishedOrded.finalPrice = JSON.stringify(resp)})
+
+                    shoppingCard.clearShoppingCard();
+                    shoppingCardSize = shoppingCard.getShoppingCardSize();
+
+                    finishedOrded.open()
+                }
+            }
         }
+        MessageDialog {
+            property var finalPrice : 0
+            id: finishedOrded
+            text: 'Gratulacje, zakupiles towar. Finalna kwota to '  + finalPrice
         }
     }
+
 }

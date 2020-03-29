@@ -15,7 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/ShopControler.cpp \
-        src/ShopingCard.cpp \
+    src/ShoppingCard.cpp \
         src/main.cpp \
 
 RESOURCES += qml.qrc
@@ -34,4 +34,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     src/Product.hpp \
     src/ShopControler.hpp \
-    src/ShopingCard.hpp
+    src/ShoppingCard.hpp

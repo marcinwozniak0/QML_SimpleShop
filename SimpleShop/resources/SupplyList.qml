@@ -34,7 +34,7 @@ Item {
                 height:main.height/supplyListSize
                 text: qsTr("Kliknij aby dodac do koszyka")
                 onClicked: {
-                    shoppingCard.addElement(shopControler.getProductName(index), shopControler.getProductPrice(index));
+                    shoppingCard.addProduct(shopControler.getProductName(index), shopControler.getProductPrice(index));
                     messageDialog.open()
                 }
                 background: Rectangle {
