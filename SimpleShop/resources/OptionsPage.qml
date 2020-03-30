@@ -11,6 +11,8 @@ Item {
         onEditingFinished: {
              httpEndpointAddress = this.text
 
+            shopSupplies.clearSupplyList();
+
             Service.get_products(function(response) {
                 var responseAsString = JSON.stringify(response.products);
                 for(var i=0; i<response.products.length; i++) {

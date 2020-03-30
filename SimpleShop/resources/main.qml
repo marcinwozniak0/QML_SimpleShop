@@ -14,12 +14,11 @@ ApplicationWindow {
     MessageDialog {
         id: serverNotConnected
         text: qsTr('Nie udało się pobrać produktów z sewera. Podaj poprawny adres w zakładce OPCJE');
-        visible: false
     }
 
     header: ToolBar {
         ToolButton {
-            icon.source: "images/List.png"
+            icon.source: "images/SupplyList.png"
             width: main.width / 3
             anchors.left: parent.left
             onClicked: {
@@ -33,7 +32,7 @@ ApplicationWindow {
         }
 
         ToolButton {
-            icon.source: "images/Shop.png"
+            icon.source: "images/ShopingCard.png"
             width: main.width / 3
             anchors.centerIn: parent
             onClicked: {

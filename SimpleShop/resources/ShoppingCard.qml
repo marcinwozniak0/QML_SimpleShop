@@ -147,7 +147,6 @@ Item {
             MessageDialog {
                 property var finalPrice : 0
                 id: finishedOrded
-                onClickedButtonChanged: {print(currentHttpStatus)}
                 text: {
                     if(201 !== currentHttpStatus){
                         return qsTr('Problemy z serwerem, spróbuj za kilka sekund')

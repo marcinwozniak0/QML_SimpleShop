@@ -5,8 +5,8 @@
         <file>resources/SupplyList.qml</file>
         <file>resources/OptionsPage.qml</file>
         <file>resources/ShopService.js</file>
-        <file>resources/images/Shop.png</file>
+        <file>resources/images/ShopingCard.png</file>
         <file>resources/images/Options.png</file>
-        <file>resources/images/List.png</file>
+        <file>resources/images/SupplyList.png</file>
     </qresource>
 </RCC>

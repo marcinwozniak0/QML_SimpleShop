@@ -5,6 +5,11 @@ void ShopSupplies::addProduct(const QString& name, const int price, const double
     _shopSupplyList.emplace_back(name, price, weight);
 }
 
+void ShopSupplies::clearSupplyList()
+{
+    _shopSupplyList.clear();
+}
+
 QString ShopSupplies::getProductName(const int index) const
 {
     return _shopSupplyList.at(index).getProductName();

@@ -15,6 +15,7 @@ public:
 
 public slots:
      void addProduct(const QString&, const int, const double);
+     void clearSupplyList();
      int getProductPrice(const int index) const;
      int getSupplyListSize() const;
      double getProductWeight(const int index) const;
