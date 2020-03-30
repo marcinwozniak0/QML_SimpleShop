@@ -8,7 +8,9 @@ Item {
 
     TextField {
         placeholderText: qsTr('Podaj adress IP')
-        onTextChanged: {
+        onEditingFinished: {
+             httpEndpointAddress = this.text
+
             Service.get_products(function(response) {
                 var responseAsString = JSON.stringify(response.products);
                 for(var i=0; i<response.products.length; i++) {
@@ -21,8 +23,6 @@ Item {
 
             supplyListPage.numberOfRows = shopSupplies.getSupplyListSize()
             shoppingCardPage.numberOfRows = shoppingCard.getShoppingCardSize()
-
-            httpEndpointAddress = this.text
         }
 
         validator: RegExpValidator{ regExp: /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/}
